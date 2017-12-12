@@ -36,7 +36,23 @@ public class Server extends Thread {
             inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String str;
             gFrame.enableBtns();
+            while (!(str = inputStream.readLine()).equals("")){
+                gFrame.addMsg("Client: "+ str);
+            }
 
+        }catch (IOException ioe){
+            JOptionPane.showMessageDialog(gFrame,"Error: "+ioe.toString());
+        }
+    }
+    public void send2client(String msg){
+        try{
+            if (outputStream != null){
+                outputStream.println(msg);
+            }else{
+                JOptionPane.showMessageDialog(gFrame,"Error: There has no client connected");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(gFrame,"Error:"+e.toString());
         }
     }
 }
