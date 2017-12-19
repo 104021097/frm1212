@@ -1,2 +1,4 @@
-public class MainFrame {
+public class MainFrame extends Thread{
+
+
 }
